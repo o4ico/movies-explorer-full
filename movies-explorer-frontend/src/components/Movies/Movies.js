@@ -29,7 +29,7 @@ function Movies({
       moviesApi.getMoviesData()
         .then((movies) => {
           localStorage.setItem('movies', JSON.stringify(movies));//сохранение фильмов
-          filter(query, short);
+          filter(movies, query, short);
         })
         .catch(() => {
           setError('Произошла ошибка');
@@ -54,11 +54,13 @@ function Movies({
     if (short) {
       return filtered.filter((item) => item.duration <= 50);//максимальна длина короткометражки
     }
+
     return filtered;
   }
 
   const filter = (allMovies, query, short) => {//фильтр по запросу
     const filtered = searchFilter(allMovies, query, short);
+    console.log(filtered);
     if (filtered.length === 0) {
       setIsLoading(false);
       setError(true);
@@ -72,7 +74,7 @@ function Movies({
   };
 
   //---------------------------------------------------------загрузка последнего поиска из localStorage
-  const validSearshingResults = (searchingResults) => {
+  /*const validSearshingResults = (searchingResults) => {
     if (searchingResults) {
       if (searchingResults.every(obj => obj.image)) {
         return true
@@ -80,13 +82,23 @@ function Movies({
     }
     return false
   }
+
   React.useEffect(() => {
     if (validSearshingResults(searchingResults)) {
       console.log(searchingResults);
       setFoundMovies(searchingResults);
+    } else {
+      localStorage.removeItem('searchingResults');
     }
-  }, []);
+  }, []);*/
 
+  React.useEffect(() => {
+    if (searchingResults) {
+      console.log(searchingResults);
+      setFoundMovies(searchingResults);
+    }
+    return
+  }, []);
 
 
 

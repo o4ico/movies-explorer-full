@@ -30,8 +30,11 @@ function SearchForm({
 
   function handleSubmit(e) {
     e.preventDefault();
-    localStorage.setItem('searchQueryText', JSON.stringify(searchValue));//сохранение значения поиска
+
     handleSearch(searchValue, isShortsFilm);
+    if (isMoviesRoute) {
+      localStorage.setItem('searchQueryText', JSON.stringify(searchValue));//сохранение значения поиска
+    }
   }
 
   function toggleCheckbox() {
@@ -39,7 +42,9 @@ function SearchForm({
     if (searchValue.length > 0) {
       handleSearch(searchValue, !isShortsFilm); //поиск по значению чекбокса только при наличии запроса
     }
-    localStorage.setItem('checkBoxState', JSON.stringify(!isShortsFilm));//сохранение значения чекбокса
+    if (isMoviesRoute) {
+      localStorage.setItem('checkBoxState', JSON.stringify(!isShortsFilm));//сохранение значения чекбокса
+    }
   }
 
   return (

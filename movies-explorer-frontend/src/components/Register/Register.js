@@ -15,7 +15,7 @@ function Register({
   const handleRegister = (name, email, password) => {
     setIsLoading(true);
     auth.register(name, email, password)//если пользователь успешно зарегистрировался то выполняется запрос на вход в аккаунт
-      .finally((res) => {
+      .then((res) => {
         onRegister();
         auth.authorize(email, password)
           .then(({ token }) => {
