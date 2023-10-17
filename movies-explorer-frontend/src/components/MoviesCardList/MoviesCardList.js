@@ -57,7 +57,7 @@ function MoviesCardList({
                 if (isSavedMoviesRoute) {
                   return (<MoviesCard
                     movie={item}
-                    key={item.movieId}
+                    key={item._id}
                     onSaveMovie={onSaveMovie}
                     onDeleteMovie={onDeleteMovie}
                   />);
@@ -69,7 +69,7 @@ function MoviesCardList({
                 if (index < maxMovies) {
                   return (<MoviesCard
                     movie={item}
-                    key={item.movieId}
+                    key={item.id}
                     onSaveMovie={onSaveMovie}
                     onDeleteMovie={onDeleteMovie}
                   />);

@@ -72,20 +72,23 @@ function Movies({
   };
 
   //---------------------------------------------------------загрузка последнего поиска из localStorage
-
+  const validSearshingResults = (searchingResults) => {
+    if (searchingResults) {
+      if (searchingResults.every(obj => obj.image)) {
+        return true
+      }
+    }
+    return false
+  }
   React.useEffect(() => {
-    if (ValidSearshingResults(searchingResults)) {
+    if (validSearshingResults(searchingResults)) {
+      console.log(searchingResults);
       setFoundMovies(searchingResults);
     }
   }, []);
 
 
-  const ValidSearshingResults = (searchingResults) => {
-    console.log(searchingResults);
-    if (searchingResults.every(obj => obj.image.url)) {
-      return true
-    }
-  }
+
 
   return (
     <>
