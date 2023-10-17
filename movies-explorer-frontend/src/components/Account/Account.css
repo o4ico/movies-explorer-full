@@ -1,0 +1,48 @@
+.account {
+  display: flex;
+  flex-direction: row;
+}
+
+.account__link {
+  color: #FFF;
+
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  text-decoration: none;
+  margin: 0;
+  margin-left: 16px;
+}
+
+/*
+.account__link_active {
+  border-bottom: 1px solid #fff;
+  padding-bottom: 8px;
+}*/
+
+.account__icon {
+  width: 10.4px;
+  height: 10.7px;
+  z-index: 1;
+}
+
+.account__icon-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #313131;
+  border-radius: 50px;
+  width: 26px;
+  height: 26px;
+  margin-left: 7px;
+  z-index: 0;
+}
+
+.account__icon-background_grey {
+  background-color: #313131;
+}
+
+.account__icon-background_blue {
+  background-color: #0F4157;
+}
