@@ -19,7 +19,7 @@ function SavedMovies({
   const handleSearch = (query, short) => {//обработчик кнопки Найти фильм
     setIsLoading(true);
     filter(query, short);
-    setSearchParams(query, short);
+    setSearchParams({ query, short });
   };
 
   function searchFilter(array, query, short) {
@@ -56,7 +56,10 @@ function SavedMovies({
   }, []);
 
   React.useEffect(() => {
-    filter(searchParams);
+    if (searchParams) {
+      console.log(searchParams);
+      filter(searchParams.query, searchParams.short);
+    }
   }, [savedMovies]);
 
   return (

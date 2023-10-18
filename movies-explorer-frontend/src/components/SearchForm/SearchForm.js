@@ -53,7 +53,7 @@ function SearchForm({
       {isSmartphone ? (
         <>
           <div className="search-form__container">
-            <form className="search-form__form" name='searchMovie' noValidate="" onSubmit={handleSubmit}>
+            <form className="search-form__form" name='searchMovie' noValidate onSubmit={handleSubmit}>
               <input
                 className="search-form__input"
                 type="text"

@@ -31,7 +31,7 @@ function Auth({
       <div className="auth__container">
         < Logo />
         <h1 className="auth__title">{title}</h1>
-        <form className="auth__form" id={formName} name={formName} onSubmit={handleSubmit}>
+        <form className="auth__form" id={formName} name={formName} onSubmit={handleSubmit} noValidate>
           {isRegisterRoute ? (
             <>
               <label className="auth__input-container">

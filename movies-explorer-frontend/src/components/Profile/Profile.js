@@ -6,6 +6,7 @@ import { useFormWithValidation } from '../../utils/validation';
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import mainApi from "../../utils/MainApi";
 import Preloader from '../Preloader/Preloader';
+import SubmitButton from '../SubmitButton/SubmitButton';
 
 function Profile({
   isLoggiedIn,
@@ -37,7 +38,7 @@ function Profile({
     evt.preventDefault();
     setIsLoading(true);
     if (values.name !== currentUser.name || values.email !== currentUser.email) {
-      mainApi.patchUserInfoServer(values)
+      mainApi.patchUserInfoServer({ name: values.name || currentUser.name, email: values.email || currentUser.email })
         .then((res) => {
           onUpdateProfile(res);
           changeEditingState();
@@ -82,14 +83,14 @@ function Profile({
             <section className="profile">
               <div className="profile__container">
                 <h1 className="profile__title">Привет, {currentUser.name}!</h1>
-                <form className="profile__form" name='profile' id='profile' noValidate="" onSubmit={handleSubmit}>
+                <form className="profile__form" name='profile' id='profile' noValidate onSubmit={handleSubmit}>
                   <label className="profile__input-container">
                     <span className="profile__input-label">Имя</span>
                     <input
                       className="profile__input"
                       type="text"
                       placeholder='Имя'
-                      value={isEditing ? `${values.name || ''}` : `${currentUser.name}`}
+                      value={isEditing ? `${values.name ?? currentUser.name}` : `${currentUser.name}`}
                       onChange={handleChange}
                       name="name"
                       id="profile-name"
@@ -104,14 +105,14 @@ function Profile({
                     <span className="profile__input-label">E-mail</span>
                     <input
                       className="profile__input"
-                      type="text"
+                      type="email"
                       placeholder='E-mail'
-                      value={isEditing ? `${values.email || ''}` : `${currentUser.email}`}
+                      value={isEditing ? `${values.email ?? currentUser.email}` : `${currentUser.email}`}
                       onChange={handleChange}
                       name="email"
                       id="profile-email"
                       required
-                      minLength={2}
+                      minLength={6}
                       maxLength={100}
                       disabled={!isEditing}
                     />
@@ -123,23 +124,25 @@ function Profile({
               {isEditing ? (
                 <div className="profile__submit-container">
                   <span className={`profile__submit-massage  ${isError ? 'profile__submit-massage_error' : ''}`}>{editError}</span>
-                  <input
-                    className={`profile__submit-button  ${!isValid ? 'profile__submit-button_disabled' : ''}`}
-                    type="submit"
-                    value='Сохранить'
-                    disabled={!isValid}
-                    form='profile'
+                  <SubmitButton
+                    value={'Сохранить'}
+                    isValid={isValid}
+                    form={'profile'}
+                    isEdit={isEditing}
+                    isLoading={isLoading}
                   />
                 </div>
               ) : (
                 <div className="profile__submit-container">
-                  <input
-                    className={`profile__submit-button profile__submit-button_edit`}
-                    type="submit"
-                    value='Редактировать'
+                  <SubmitButton
+                    value={'Редактировать'}
+                    isValid={true}
+                    form={'profile'}
+                    isEdit={isEditing}
                     onClick={changeEditingState}
+                    isLoading={false}
                   />
-                  <Link to="/"><button className="profile__submit-button profile__submit-button_exit" onClick={handleLogout}>Выйти из аккаунта</button></Link>
+                  <Link to="/"><button className="profile__button-exit" onClick={handleLogout}>Выйти из аккаунта</button></Link>
                 </div>)
               }
             </section>

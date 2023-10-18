@@ -17,16 +17,17 @@ export function useFormWithValidation() {
     setIsValid(target.closest("form").checkValidity());
 
     if (name === 'email') {
-      if (isEmail(value)) {
-        target.setCustomValidity('');
-      } if (!isEmail(value)) {
+      if (!isEmail(value)) {
+        setIsValid(false);
         target.setCustomValidity('Некорректный адрес почты');
       }
+      target.setCustomValidity('');
     }
 
     if (name === 'name') {
       if (!/^(?=.{1,30}$)[а-яёА-ЯЁa-zA-Z]+(?:[- ][а-яёА-ЯЁa-zA-Z]+)*$/.test(value)) {
         target.setCustomValidity('Некоректное имя пользователя');
+        setIsValid(false);
       } else {
         target.setCustomValidity('');
       }

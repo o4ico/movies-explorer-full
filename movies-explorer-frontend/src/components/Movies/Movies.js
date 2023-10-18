@@ -94,8 +94,10 @@ function Movies({
 
   React.useEffect(() => {
     if (searchingResults) {
-      console.log(searchingResults);
-      setFoundMovies(searchingResults);
+      if (searchingResults.every(obj => obj.image)) {
+        console.log(searchingResults);
+        setFoundMovies(searchingResults);
+      }
     }
     return
   }, []);
