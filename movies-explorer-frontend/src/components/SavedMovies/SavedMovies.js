@@ -52,12 +52,15 @@ function SavedMovies({
   };
 
   React.useEffect(() => {//все фильмы при загрузке страницы
-    setFoundMovies(savedMovies);
+    setFoundMovies(searchParams);
   }, []);
 
   React.useEffect(() => {
+    setFoundMovies(savedMovies);
+  }, [onDeleteMovie]);
+
+  React.useEffect(() => {
     if (searchParams) {
-      console.log(searchParams);
       filter(searchParams.query, searchParams.short);
     }
   }, [savedMovies]);
