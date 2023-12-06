@@ -1,7 +1,7 @@
 .student {
   display: grid;
   grid-template-columns: repeat(2, minmax(min-content, max-content));
-  grid-template-rows: 58px 20px minmax(min-content, max-content) 18px;
+  grid-template-rows: 58px 20px minmax(min-content, max-content) minmax(min-content, max-content) 18px;
   box-sizing: border-box;
   max-width: 1280px;
   width: 100%;
@@ -47,9 +47,12 @@
   font-weight: 400;
   line-height: 22px;
   max-width: 600px;
-  grid-row: 3/4;
   grid-column: 1/2;
   margin: 8px 0 0;
+}
+
+.student__text:last-of-type {
+  margin: 0;
 }
 
 .student__photo {
@@ -72,6 +75,8 @@
   line-height: normal;
   text-decoration: none;
   align-self: flex-end;
+  grid-row: 5/6;
+  grid-column: 1/2;
   margin: 0;
 }
 
@@ -79,7 +84,7 @@
 
   .student {
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(5, minmax(min-content, max-content));
+    grid-template-rows: repeat(6, minmax(min-content, max-content));
     max-width: 1280px;
     width: 100%;
     column-gap: 0;
@@ -107,7 +112,6 @@
   .student__text {
     font-size: 11px;
     line-height: 16px;
-    grid-row: 4/5;
     grid-column: 1/2;
     margin: 0;
   }
@@ -119,7 +123,7 @@
   }
 
   .student__link {
-    grid-row: 5/6;
+    grid-row: 6/7;
     grid-column: 1/2;
     margin-top: 20px;
   }
@@ -147,25 +151,12 @@
 
   .student {
     grid-template-columns: fit-content(364px) 1fr;
-    grid-template-rows: 40px 19px minmax(min-content, max-content) 18px;
+    grid-template-rows: 40px 19px minmax(min-content, max-content) minmax(min-content, max-content) 18px;
     max-width: 1280px;
     width: 100%;
     column-gap: 49px;
     row-gap: 16px;
     justify-content: space-between;
-  }
-
-  .student__text {
-    color: #FFF;
-    font-feature-settings: 'clig' off, 'liga' off;
-
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 18px;
-    max-width: 600px;
-    grid-row: 3/4;
-    grid-column: 1/2;
   }
 
   .student__photo {
