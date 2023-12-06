@@ -102,8 +102,8 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  baseUrl: 'https://api.film.nomoredomainsrocks.ru/',
-  //baseUrl: 'http://127.0.0.1:4000/'
+  //baseUrl: 'https://api.film.nomoredomainsrocks.ru/',
+  baseUrl: 'http://127.0.0.1:4000/'
 });
 
 export default mainApi;

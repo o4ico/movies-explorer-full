@@ -45,7 +45,7 @@ class Auth {
       });
   }
 }
-//const auth = new Auth('http://127.0.0.1:4000');
-const auth = new Auth('https://api.film.nomoredomainsrocks.ru');
+const auth = new Auth('http://127.0.0.1:4000');
+//const auth = new Auth('https://api.film.nomoredomainsrocks.ru');
 
 export default auth;
